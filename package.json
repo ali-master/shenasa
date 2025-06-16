@@ -4,8 +4,13 @@
 	"description": "A Cloudflare Worker that determines the gender of a person based on their name.",
 	"homepage": "https://shenasa.usestrict.dev",
 	"author": {
+		"name": "Ali Torki",
 		"email": "ali_4286@live.com",
-		"name": "Ali Torki"
+		"url": "https://github.com/ali-master"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ali-master/shenasa.git"
 	},
 	"private": true,
 	"scripts": {

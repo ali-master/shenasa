@@ -37,15 +37,15 @@ class DatabaseSeeder {
 			// Process all CSV files
 			const datasets = [
 				{
-					file: "assets/persian-gender-by-name.csv",
+					file: "data/persian-gender-by-name.csv",
 					parser: this.parsePersianGenderCSV.bind(this),
 				},
 				{
-					file: "assets/iranianNamesDataset.csv",
+					file: "data/iranianNamesDataset.csv",
 					parser: this.parseIranianNamesCSV.bind(this),
 				},
 				{
-					file: "assets/names.csv",
+					file: "data/names.csv",
 					parser: this.parseNamesCSV.bind(this),
 				},
 			];
