@@ -55,7 +55,7 @@ The API will be available at `http://localhost:8787`
 shenasa/
 ├── src/
 │   ├── index.ts              # Main application entry point
-│   ├── seeder.ts             # Database seeding utility
+│   ├── seed.ts             # Database seeding utility
 │   ├── schema/               # Zod validation schemas
 │   │   ├── index.ts          # Schema exports
 │   │   ├── metrics.ts        # Metrics/analytics schemas
@@ -117,7 +117,7 @@ model NewFeature {
   id        String   @id @default(cuid(2))
   name      String
   createdAt DateTime @default(now())
-  
+
   @@index([name])
 }
 ```
@@ -129,7 +129,7 @@ npx prisma migrate dev --name add_new_feature
 
 3. **Update seeder if needed:**
 ```typescript
-// src/seeder.ts - add new data seeding logic
+// src/seed.ts - add new data seeding logic
 ```
 
 ### 3. API Development
@@ -184,10 +184,10 @@ app.post(
   }),
   async (c) => {
     const { name, options } = c.req.valid("json");
-    
+
     // Implementation logic
     const result = await processNewFeature(name, options);
-    
+
     return c.json(result);
   },
 );
@@ -201,9 +201,9 @@ export function customMiddleware(options: CustomOptions) {
   return async (c: Context, next: () => Promise<void>) => {
     // Pre-processing
     const startTime = Date.now();
-    
+
     await next();
-    
+
     // Post-processing
     const duration = Date.now() - startTime;
     c.header("X-Processing-Time", duration.toString());
@@ -224,17 +224,17 @@ import { CacheManager } from '../src/utils/cache';
 
 describe('CacheManager', () => {
   let cache: CacheManager;
-  
+
   beforeEach(() => {
     cache = new CacheManager(mockDb, { prefix: 'test' });
   });
-  
+
   it('should set and get values', async () => {
     await cache.set('key', 'value', 60);
     const result = await cache.get('key');
     expect(result).toBe('value');
   });
-  
+
   it('should handle expiration', async () => {
     await cache.set('key', 'value', -1); // Already expired
     const result = await cache.get('key');
@@ -253,20 +253,20 @@ describe('API Integration', () => {
   it('should return name gender', async () => {
     const response = await fetch('http://localhost:8787/api/v1/name/محمد');
     const data = await response.json();
-    
+
     expect(response.status).toBe(200);
     expect(data.gender).toBe('MALE');
   });
-  
+
   it('should handle rate limiting', async () => {
     // Make requests beyond limit
-    const promises = Array(101).fill(0).map(() => 
+    const promises = Array(101).fill(0).map(() =>
       fetch('http://localhost:8787/api/v1/name/تست')
     );
-    
+
     const responses = await Promise.all(promises);
     const rateLimited = responses.some(r => r.status === 429);
-    
+
     expect(rateLimited).toBe(true);
   });
 });
@@ -331,7 +331,7 @@ npm run lint:fix
 
 - **Files**: kebab-case (`user-service.ts`)
 - **Functions**: camelCase (`getUserById`)
-- **Classes**: PascalCase (`UserService`) 
+- **Classes**: PascalCase (`UserService`)
 - **Constants**: SCREAMING_SNAKE_CASE (`API_VERSION`)
 - **Types/Interfaces**: PascalCase (`UserResponse`)
 
@@ -407,7 +407,7 @@ app.get('/export', async (c) => {
       // Stream data in chunks
     }
   });
-  
+
   return new Response(stream, {
     headers: { 'Content-Type': 'application/json' }
   });

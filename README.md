@@ -279,7 +279,7 @@ npm test -- name-lookup.test.ts
 shenasa/
 ├── src/
 │   ├── index.ts              # Main application entry
-│   ├── seeder.ts             # Database seeding CLI
+│   ├── seed.ts             # Database seeding CLI
 │   ├── schema/               # Zod validation schemas
 │   │   ├── metrics.ts        # Metrics & analytics schemas
 │   │   └── ...

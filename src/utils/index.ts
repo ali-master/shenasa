@@ -3,6 +3,7 @@ export * from "./secure-headers-config";
 export * from "./prisma";
 export * from "./rate-limiter";
 export * from "./cache";
+export * from "./logger";
 export * from "./metrics";
 export * from "./api-key";
 export * from "./webhook";

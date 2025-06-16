@@ -1,0 +1,70 @@
+<svg width="200" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<!--Modern gradient system for light/dark compatibility-->
+		<linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+			<stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1"/>
+			<stop offset="50%" style="stop-color:#7c3aed;stop-opacity:1"/>
+			<stop offset="100%" style="stop-color:#a855f7;stop-opacity:1"/>
+		</linearGradient>
+		<linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+			<stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1"/>
+			<stop offset="50%" style="stop-color:#0891b2;stop-opacity:1"/>
+			<stop offset="100%" style="stop-color:#0e7490;stop-opacity:1"/>
+		</linearGradient>
+		<!--Modern glow effects-->
+		<filter id="modernGlow" x="-50%" y="-50%" width="200%" height="200%">
+			<feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+			<feMerge>
+				<feMergeNode in="coloredBlur"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+		<filter id="subtleGlow" x="-30%" y="-30%" width="160%" height="160%">
+			<feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+			<feMerge>
+				<feMergeNode in="coloredBlur"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+	</defs>
+	<!--Circular logo mark positioned above text-->
+	<g transform="translate(100,35)">
+		<!--Outer circular container-->
+		<circle cx="0" cy="0" r="25" fill="url(#primaryGradient)" opacity="0.1"/>
+		<circle cx="0" cy="0" r="25" fill="none" stroke="url(#primaryGradient)" stroke-width="2" opacity="0.3"/>
+		<!--Inner geometric symbol - abstract "S" form-->
+		<g filter="url(#modernGlow)">
+			<!--Main symbol - stylized S with modern twist-->
+			<path d="M-10,-6 Q-6,-10 -2,-6 Q2,-2 6,-6 Q10,-10 14,-6 Q10,-2 6,2 Q2,6 -2,2 Q-6,6 -10,10 Q-6,14 -2,10 Q2,6 6,10 Q10,14 14,10" fill="none" stroke="url(#primaryGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="scale(0.7)"/>
+			<!--Central dot-->
+			<circle cx="0" cy="0" r="3" fill="url(#accentGradient)"/>
+			<circle cx="0" cy="0" r="1.5" fill="white" opacity="0.9"/>
+		</g>
+		<!--Subtle outer accents-->
+		<g opacity="0.6">
+			<circle cx="-12" cy="-12" r="1.5" fill="url(#accentGradient)"/>
+			<circle cx="12" cy="-12" r="1.5" fill="url(#accentGradient)"/>
+			<circle cx="-12" cy="12" r="1.5" fill="url(#primaryGradient)" opacity="0.7"/>
+			<circle cx="12" cy="12" r="1.5" fill="url(#primaryGradient)" opacity="0.7"/>
+		</g>
+	</g>
+	<!--Modern typography positioned below circle-->
+	<g transform="translate(100,85)">
+		<!--Primary wordmark - dark mode compatible-->
+		<text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="currentColor" text-anchor="middle" filter="url(#subtleGlow)">
+			<tspan style="letter-spacing: -0.5px;">Shenasa</tspan>
+		</text>
+	</g>
+	<!--Floating particles for visual interest-->
+	<g opacity="0.3">
+		<circle cx="160" cy="25" r="1" fill="url(#primaryGradient)">
+			<animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite"/>
+		</circle>
+		<circle cx="40" cy="30" r="0.8" fill="url(#accentGradient)">
+			<animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite"/>
+		</circle>
+		<circle cx="170" cy="45" r="0.6" fill="url(#primaryGradient)">
+			<animate attributeName="opacity" values="0.3;0.5;0.3" dur="4s" repeatCount="indefinite"/>
+		</circle>
+	</g>
+</svg>
