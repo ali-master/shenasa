@@ -1,19 +1,51 @@
 {
-	"name": "persian-gender-by-name",
+	"name": "@usex/shenasa",
 	"version": "0.0.0",
+	"description": "A Cloudflare Worker that determines the gender of a person based on their name.",
+	"homepage": "https://shenasa.usestrict.dev",
+	"author": {
+		"email": "ali_4286@live.com",
+		"name": "Ali Torki"
+	},
 	"private": true,
 	"scripts": {
 		"deploy": "wrangler deploy",
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
 		"test": "vitest",
-		"cf-typegen": "wrangler types"
+		"cf-typegen": "wrangler types",
+		"build": "tsc",
+		"seed": "npm run build && node dist/seeder.js",
+		"db:migrate": "npx prisma migrate dev",
+		"db:generate": "npx prisma generate",
+		"db:studio": "npx prisma studio",
+		"format": "prettier --write \"**/*.ts\"",
+		"format:check": "prettier --check \"**/*.ts\"",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"check-types": "tsc --noEmit --pretty"
 	},
 	"devDependencies": {
-		"@cloudflare/vitest-pool-workers": "^0.7.5",
-		"@cloudflare/workers-types": "^4.20250423.0",
-		"typescript": "^5.5.2",
-		"vitest": "~3.0.7",
-		"wrangler": "^4.13.0"
+		"@cloudflare/vitest-pool-workers": "^0.8.38",
+		"@cloudflare/workers-types": "^4.20250614.0",
+		"@types/node": "^24.0.3",
+		"dotenv": "^16.5.0",
+		"prettier": "^3.5.3",
+		"typescript": "^5.8.3",
+		"vitest": "~3.2.3",
+		"wrangler": "^4.20.0"
+	},
+	"dependencies": {
+		"@hono/zod-validator": "^0.7.0",
+		"@orama/cuid2": "^2.2.3",
+		"@persian-tools/persian-tools": "^4.0.0-beta.0",
+		"@prisma/adapter-d1": "^6.9.0",
+		"@prisma/client": "^6.9.0",
+		"@scalar/hono-api-reference": "^0.9.4",
+		"hono": "^4.7.11",
+		"hono-openapi": "^0.4.8",
+		"prisma": "^6.9.0",
+		"zod": "^3.25.64",
+		"zod-openapi": "^4.2.4"
 	}
 }

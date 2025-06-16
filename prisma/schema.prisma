@@ -1,0 +1,262 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model PersianName {
+  id             String           @id @default(cuid(2))
+  name           String
+  gender         Gender
+  enName         String?
+  origin         String?
+  abjadValue     Int?
+  isApproved     Boolean          @default(true)
+  popularity     Int              @default(0)
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  requestLogs    RequestLog[]
+  customDataList NameCustomData[]
+
+  @@unique(fields: [name, gender], name: "unique_name_gender")
+  @@index([name])
+  @@index([popularity])
+  @@index([origin])
+}
+
+model RequestLog {
+  id            String       @id @default(cuid(2))
+  persianNameId String?
+  persianName   PersianName? @relation(fields: [persianNameId], references: [id])
+  requestedName String
+  ipAddress     String?
+  userAgent     String?
+  responseTime  Int
+  statusCode    Int
+  apiKey        String?
+  createdAt     DateTime     @default(now())
+
+  @@index([createdAt])
+  @@index([apiKey])
+  @@index([requestedName])
+}
+
+model ApiKey {
+  id           String    @id @default(cuid(2))
+  key          String    @unique
+  name         String
+  tier         Tier      @default(FREE)
+  requestLimit Int
+  requestCount Int       @default(0)
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  lastUsedAt   DateTime?
+  webhooks     Webhook[]
+
+  @@index([key])
+  @@index([tier])
+}
+
+model SystemMetrics {
+  id                  String   @id @default(cuid(2))
+  totalRequests       Int
+  successfulRequests  Int
+  failedRequests      Int
+  averageResponseTime Float
+  uniqueNamesCount    Int
+  date                DateTime @unique
+  createdAt           DateTime @default(now())
+
+  @@index([date])
+}
+
+model CacheEntry {
+  id        String   @id @default(cuid(2))
+  key       String   @unique
+  value     String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([expiresAt])
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  UNKNOWN
+}
+
+model Webhook {
+  id         String       @id @default(cuid(2))
+  url        String
+  events     Json
+  secret     String?
+  isActive   Boolean      @default(true)
+  apiKeyId   String
+  apiKey     ApiKey       @relation(fields: [apiKeyId], references: [id])
+  retryCount Int          @default(3)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  logs       WebhookLog[]
+
+  @@index([apiKeyId])
+  @@index([isActive])
+}
+
+model WebhookLog {
+  id           String   @id @default(cuid(2))
+  webhookId    String
+  webhook      Webhook  @relation(fields: [webhookId], references: [id])
+  event        String
+  payload      String // JSON payload
+  statusCode   Int?
+  attempts     Int      @default(0)
+  successful   Boolean  @default(false)
+  errorMessage String?
+  createdAt    DateTime @default(now())
+
+  @@index([webhookId])
+  @@index([event])
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid(2))
+  action     String // CREATE, UPDATE, DELETE, LOGIN, etc.
+  resource   String // API_KEY, WEBHOOK, CACHE, etc.
+  resourceId String?
+  userId     String? // Admin user identifier
+  apiKeyId   String?
+  ipAddress  String?
+  userAgent  String?
+  details    String? // JSON details
+  createdAt  DateTime @default(now())
+
+  @@index([action])
+  @@index([resource])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model GeographicStats {
+  id           String   @id @default(cuid(2))
+  country      String
+  region       String?
+  city         String?
+  requestCount Int      @default(0)
+  uniqueUsers  Int      @default(0)
+  popularNames String // JSON array
+  date         DateTime @unique
+  createdAt    DateTime @default(now())
+
+  @@index([country])
+  @@index([date])
+}
+
+model NameSimilarity {
+  id          String   @id @default(cuid(2))
+  name        String
+  similarName String
+  similarity  Float // 0.0 to 1.0
+  algorithm   String // levenshtein, jaro, etc.
+  createdAt   DateTime @default(now())
+
+  @@unique([name, similarName, algorithm])
+  @@index([name])
+  @@index([similarity])
+}
+
+model CustomField {
+  id             String           @id @default(cuid(2))
+  name           String           @unique
+  type           String // string, number, boolean, json
+  description    String?
+  isRequired     Boolean          @default(false)
+  defaultValue   String?
+  validation     String? // JSON schema for validation
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  customDataList NameCustomData[]
+
+  @@index([name])
+}
+
+model NameCustomData {
+  id            String      @id @default(cuid(2))
+  persianNameId String
+  persianName   PersianName @relation(fields: [persianNameId], references: [id])
+  fieldId       String
+  field         CustomField @relation(fields: [fieldId], references: [id])
+  value         String // JSON value
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([persianNameId, fieldId])
+  @@index([persianNameId])
+  @@index([fieldId])
+}
+
+model AlertRule {
+  id            String         @id @default(cuid(2))
+  name          String
+  description   String?
+  metric        String // error_rate, response_time, request_count
+  operator      String // gt, lt, eq, gte, lte
+  threshold     Float
+  window        Int // Time window in minutes
+  isActive      Boolean        @default(true)
+  webhookUrl    String?
+  emailTo       String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  alertTriggers AlertTrigger[]
+
+  @@index([metric])
+  @@index([isActive])
+}
+
+model AlertTrigger {
+  id         String    @id @default(cuid(2))
+  ruleId     String
+  rule       AlertRule @relation(fields: [ruleId], references: [id])
+  value      Float
+  triggered  Boolean   @default(true)
+  resolved   Boolean   @default(false)
+  message    String
+  createdAt  DateTime  @default(now())
+  resolvedAt DateTime?
+
+  @@index([ruleId])
+  @@index([triggered])
+  @@index([createdAt])
+}
+
+model DataExport {
+  id          String    @id @default(cuid(2))
+  type        String // names, metrics, logs, full
+  format      String // json, csv, sql
+  status      String // pending, processing, completed, failed
+  apiKeyId    String?
+  fileName    String?
+  fileSize    Int?
+  downloadUrl String?
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+  completedAt DateTime?
+
+  @@index([status])
+  @@index([apiKeyId])
+  @@index([createdAt])
+}
+
+enum Tier {
+  FREE
+  BASIC
+  PREMIUM
+  ENTERPRISE
+}

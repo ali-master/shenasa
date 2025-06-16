@@ -1,6 +1,21 @@
 {
-	"printWidth": 140,
-	"singleQuote": true,
+	"printWidth": 100,
+	"trailingComma": "all",
+	"singleQuote": false,
 	"semi": true,
-	"useTabs": true
+	"tabWidth": 2,
+	"quoteProps": "as-needed",
+	"jsxSingleQuote": false,
+	"arrowParens": "always",
+	"overrides": [
+		{
+			"files": [
+				"*.json",
+				"*.jsonc"
+			],
+			"options": {
+				"parser": "json"
+			}
+		}
+	]
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FoldableProjectSettings">
+    <option name="RULES">
+      <list>
+        <Rule>
+          <option name="background" value="-14803167" />
+          <option name="name" value="node_modules" />
+          <option name="pattern" value="node_modules" />
+        </Rule>
+      </list>
+    </option>
+  </component>
+</project>
