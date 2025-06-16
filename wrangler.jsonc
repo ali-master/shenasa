@@ -20,7 +20,7 @@
 		{
 			"binding": "DB",
 			"database_name": "shenasa",
-			"database_id": "6c56fa3a-5980-4758-8c75-bc35f2f3a7ac"
+			"database_id": "${CLOUDFLARE_DATABASE_ID}"
 		}
 	]
 
