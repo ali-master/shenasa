@@ -1,5 +1,12 @@
 # 🌙 Shenasa (شناسا) - Persian Name Gender Detection API
 
+<div align="center">
+  <img src="assets/logo.svg" alt="Shenasa - Persian Name Gender Detection API" width="400" />
+
+  <p><em>شناسا - Persian Name Gender Detection API</em></p>
+  <p><strong>Honoring Persian Heritage Through Modern Technology</strong></p>
+</div>
+
 [![Deploy Status](https://img.shields.io/badge/Deploy-Cloudflare%20Workers-orange?style=flat-square&logo=cloudflare)](https://shenasa.usestrict.dev)
 [![API Version](https://img.shields.io/badge/API-v2.0.0-blue?style=flat-square)](https://shenasa.usestrict.dev/api/v1/docs)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
@@ -374,4 +381,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Made with ❤️ for the Persian community**
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/ali-master">Ali Torki</a> for the Persian community
+</p>

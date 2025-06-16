@@ -1,0 +1,176 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!--Modern gradient system matching logo-->
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#7c3aed;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#0891b2;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0e7490;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1"/>
+      <stop offset="30%" style="stop-color:#1e293b;stop-opacity:1"/>
+      <stop offset="70%" style="stop-color:#334155;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#475569;stop-opacity:1"/>
+    </linearGradient>
+    <!--Modern geometric patterns-->
+    <pattern id="modernPattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+      <rect width="80" height="80" fill="none"/>
+      <circle cx="40" cy="40" r="2" fill="url(#primaryGradient)" opacity="0.1"/>
+      <circle cx="20" cy="20" r="1.5" fill="url(#accentGradient)" opacity="0.08"/>
+      <circle cx="60" cy="20" r="1" fill="url(#primaryGradient)" opacity="0.06"/>
+      <circle cx="20" cy="60" r="1" fill="url(#accentGradient)" opacity="0.05"/>
+      <circle cx="60" cy="60" r="1.5" fill="url(#primaryGradient)" opacity="0.07"/>
+    </pattern>
+    <!--Modern glow effects-->
+    <filter id="modernGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="textShadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+  </defs>
+  <!--Modern background-->
+  <rect width="1280" height="640" fill="url(#backgroundGradient)"/>
+  <!--Subtle pattern overlay-->
+  <rect width="1280" height="640" fill="url(#modernPattern)" opacity="0.3"/>
+  <!--Main content area-->
+  <g transform="translate(640,320)">
+    <!--Central modern logo (scaled up)-->
+    <g transform="translate(0,-150) scale(3)">
+      <!--Circular logo mark-->
+      <g>
+        <!--Outer circular container-->
+        <circle cx="0" cy="0" r="25" fill="url(#primaryGradient)" opacity="0.2"/>
+        <circle cx="0" cy="0" r="25" fill="none" stroke="url(#primaryGradient)" stroke-width="2" opacity="0.6"/>
+        <!--Inner geometric symbol-->
+        <g filter="url(#modernGlow)">
+          <!--Main symbol - stylized S-->
+          <path d="M-10,-6 Q-6,-10 -2,-6 Q2,-2 6,-6 Q10,-10 14,-6 Q10,-2 6,2 Q2,6 -2,2 Q-6,6 -10,10 Q-6,14 -2,10 Q2,6 6,10 Q10,14 14,10" fill="none" stroke="url(#primaryGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="scale(0.7)"/>
+          <!--Central dot-->
+          <circle cx="0" cy="0" r="3" fill="url(#accentGradient)"/>
+          <circle cx="0" cy="0" r="1.5" fill="white" opacity="0.9"/>
+        </g>
+        <!--Subtle outer accents-->
+        <g opacity="0.8">
+          <circle cx="-12" cy="-12" r="1.5" fill="url(#accentGradient)"/>
+          <circle cx="12" cy="-12" r="1.5" fill="url(#accentGradient)"/>
+          <circle cx="-12" cy="12" r="1.5" fill="url(#primaryGradient)" opacity="0.7"/>
+          <circle cx="12" cy="12" r="1.5" fill="url(#primaryGradient)" opacity="0.7"/>
+        </g>
+      </g>
+    </g>
+    <!--Main title positioned below logo-->
+    <text x="0" y="-10" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="800" fill="white" text-anchor="middle" filter="url(#textShadow)">
+      <tspan style="letter-spacing: -1px;">Shenasa</tspan>
+    </text>
+    <!--Subtitle-->
+    <text x="0" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="600" fill="url(#accentGradient)" text-anchor="middle" opacity="0.9">
+      Persian Name Gender Detection API
+    </text>
+    <!--Feature highlights in modern layout-->
+    <g transform="translate(0,80)">
+      <!--Modern container-->
+      <rect x="-500" y="0" width="1000" height="140" fill="rgba(255,255,255,0.05)" rx="16" stroke="url(#primaryGradient)" stroke-width="1" opacity="0.4"/>
+      <!--Left column-->
+      <g transform="translate(-350,30)">
+        <g opacity="0.9">
+          <circle cx="-8" cy="5" r="3" fill="url(#primaryGradient)"/>
+          <text x="0" y="10" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="white">
+            ✨ ML-Powered Similarity Detection
+          </text>
+          <text x="0" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="white">
+            🌍 Geographic Analytics &amp; Insights
+          </text>
+          <text x="0" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="white">
+            🔗 Webhook Integration
+          </text>
+          <text x="0" y="85" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="white">
+            📊 Real-time Monitoring
+          </text>
+        </g>
+      </g>
+      <!--Right column-->
+      <g transform="translate(50,30)">
+        <g opacity="0.9">
+          <circle cx="-8" cy="5" r="3" fill="url(#accentGradient)"/>
+          <text x="0" y="10" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="white">
+            🔐 Enterprise Security &amp; Audit
+          </text>
+          <text x="0" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="white">
+            💾 Multi-format Data Export
+          </text>
+          <text x="0" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="white">
+            ⚡ Advanced Caching System
+          </text>
+          <text x="0" y="85" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500" fill="white">
+            🎯 Intelligent Rate Limiting
+          </text>
+        </g>
+      </g>
+      <!--Central divider-->
+      <g transform="translate(0,70)" opacity="0.3">
+        <line x1="-400" y1="0" x2="400" y2="0" stroke="url(#primaryGradient)" stroke-width="1"/>
+        <circle cx="0" cy="0" r="4" fill="url(#accentGradient)"/>
+        <circle cx="0" cy="0" r="2" fill="white" opacity="0.8"/>
+      </g>
+    </g>
+    <!--Modern tagline-->
+    <text x="0" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="500" fill="url(#primaryGradient)" text-anchor="middle" opacity="0.8" font-style="italic">
+      Enterprise-Grade API for Modern Applications
+    </text>
+  </g>
+  <!--Modern corner accents-->
+  <g opacity="0.15">
+    <!--Top corners-->
+    <circle cx="100" cy="100" r="30" fill="none" stroke="url(#primaryGradient)" stroke-width="1"/>
+    <circle cx="100" cy="100" r="15" fill="url(#accentGradient)" opacity="0.3"/>
+    <circle cx="1180" cy="100" r="25" fill="none" stroke="url(#accentGradient)" stroke-width="1"/>
+    <circle cx="1180" cy="100" r="12" fill="url(#primaryGradient)" opacity="0.3"/>
+    <!--Bottom corners-->
+    <circle cx="100" cy="540" r="20" fill="none" stroke="url(#primaryGradient)" stroke-width="1"/>
+    <circle cx="100" cy="540" r="8" fill="url(#accentGradient)" opacity="0.4"/>
+    <circle cx="1180" cy="540" r="35" fill="none" stroke="url(#accentGradient)" stroke-width="1"/>
+    <circle cx="1180" cy="540" r="18" fill="url(#primaryGradient)" opacity="0.2"/>
+  </g>
+  <!--Floating modern elements-->
+  <g opacity="0.2">
+    <circle cx="200" cy="150" r="2" fill="url(#primaryGradient)">
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1000" cy="200" r="1.5" fill="url(#accentGradient)">
+      <animate attributeName="opacity" values="0.2;0.5;0.2" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="300" cy="480" r="2.5" fill="url(#primaryGradient)">
+      <animate attributeName="opacity" values="0.2;0.4;0.2" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="950" cy="450" r="1" fill="url(#accentGradient)">
+      <animate attributeName="opacity" values="0.2;0.7;0.2" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <!--Bottom information with modern styling-->
+  <g transform="translate(100,570)" opacity="0.7">
+    <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="500" fill="url(#primaryGradient)">
+      github.com/ali-master/shenasa
+    </text>
+    <text x="0" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="500" fill="url(#accentGradient)">
+      shenasa.usestrict.dev
+    </text>
+  </g>
+  <g transform="translate(1100,570)" opacity="0.7">
+    <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="white" text-anchor="end">
+      Enterprise Edition
+    </text>
+    <text x="0" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="500" fill="url(#primaryGradient)" text-anchor="end">
+      Modern API Platform
+    </text>
+  </g>
+</svg>
